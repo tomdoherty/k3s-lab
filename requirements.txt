@@ -1,0 +1,7 @@
+ansible-lint==4.1.0
+ansible==2.8.5
+backports.ssl-match-hostname==3.7.0.1
+docker==4.1.0
+molecule==2.22
+pyyaml==5.1
+yamllint==1.17.0

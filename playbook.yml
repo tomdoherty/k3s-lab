@@ -1,0 +1,20 @@
+---
+- hosts: all
+  tasks:
+  - include_role:
+      name: k3s-all
+  become: yes
+
+
+- hosts: master
+  tasks:
+  - include_role:
+      name: k3s-master
+  become: yes
+
+
+- hosts: nodes
+  tasks:
+  - include_role:
+      name: k3s-nodes
+  become: yes

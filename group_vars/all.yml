@@ -1,0 +1,5 @@
+---
+# vars file for k3s-all
+
+k3s_version: v0.9.1
+master_ip: 192.168.33.10
