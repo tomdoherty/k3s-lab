@@ -5,7 +5,7 @@ After=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/usr/local/bin/k3s server --bind-address {{ master_ip }} --advertise-address {{ master_ip }}
+ExecStart=/usr/local/bin/k3s server --bind-address {{ master_ip }} --advertise-address {{ master_ip }} --flannel-iface=eth1
 KillMode=process
 Delegate=yes
 LimitNOFILE=infinity
