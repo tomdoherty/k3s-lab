@@ -12,22 +12,22 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'k3s-master' do |app|
     app.vm.hostname = 'k3s-master'
-    app.vm.network 'private_network', ip: '192.168.33.10'
+    app.vm.network 'private_network', ip: '192.168.0.100'
   end
 
   config.vm.define 'k3s-node01' do |app|
     app.vm.hostname = 'k3s-node01'
-    app.vm.network 'private_network', ip: '192.168.33.11'
+    app.vm.network 'private_network', ip: '192.168.0.101'
   end
 
   config.vm.define 'k3s-node02' do |app|
     app.vm.hostname = 'k3s-node02'
-    app.vm.network 'private_network', ip: '192.168.33.12'
+    app.vm.network 'private_network', ip: '192.168.0.102'
   end
 
   config.vm.define 'k3s-node03' do |app|
     app.vm.hostname = 'k3s-node03'
-    app.vm.network 'private_network', ip: '192.168.33.13'
+    app.vm.network 'private_network', ip: '192.168.0.103'
   end
 
   #   config.vm.provision 'ansible' do |ansible|
