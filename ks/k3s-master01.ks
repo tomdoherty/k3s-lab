@@ -5,7 +5,7 @@ text
 firewall --disable
 firstboot --disable
 keyboard gb
-network --device eth0 --bootproto static --ip 192.168.0.100 --netmask 255.255.255.0 --gateway 192.168.0.1 --nameserver 8.8.8.8 --noipv6 --hostname k3-master01
+network --device eth0 --bootproto static --ip 192.168.0.20 --netmask 255.255.255.0 --gateway 192.168.0.1 --nameserver 8.8.8.8 --noipv6 --hostname k3-master01
 lang en_GB
 logging --level=info
 url --url=http://mirror.mhd.uk.as44574.net/mirror.centos.org/7.7.1908/os/x86_64/
