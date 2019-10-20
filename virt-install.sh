@@ -6,6 +6,7 @@ virt-install \
   --noautoconsole \
   --autostart \
   --virt-type kvm \
+  --wait=-1 \
   --vcpus 1 \
   --os-type linux \
   --os-variant rhel7.7 \
@@ -23,6 +24,7 @@ virt-install \
   --noautoconsole \
   --autostart \
   --virt-type kvm \
+  --wait=-1 \
   --vcpus 1 \
   --os-type linux \
   --os-variant rhel7.7 \
@@ -41,6 +43,7 @@ virt-install \
   --noautoconsole \
   --autostart \
   --virt-type kvm \
+  --wait=-1 \
   --vcpus 1 \
   --os-type linux \
   --os-variant rhel7.7 \
@@ -58,6 +61,7 @@ virt-install \
   --noautoconsole \
   --autostart \
   --virt-type kvm \
+  --wait=-1 \
   --vcpus 1 \
   --os-type linux \
   --os-variant rhel7.7 \
