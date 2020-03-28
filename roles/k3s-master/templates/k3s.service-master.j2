@@ -5,7 +5,9 @@ After=network-online.target
 
 [Service]
 Type=notify
-ExecStart=/usr/local/bin/k3s server --bind-address {{ master_ip }} --advertise-address {{ master_ip }} --flannel-iface=eth1
+ExecStartPre=-/sbin/modprobe br_netfilter
+ExecStartPre=-/sbin/modprobe overlay
+ExecStart=/usr/local/bin/k3s server --bind-address {{ master_ip }} --advertise-address {{ master_ip }}
 KillMode=process
 Delegate=yes
 LimitNOFILE=infinity

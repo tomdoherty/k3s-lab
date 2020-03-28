@@ -1,0 +1,33 @@
+---
+
+- name: create kube config dir
+  file:
+    path: "/etc/rancher/k3s"
+    state: directory
+
+- name: install kube config
+  copy:
+    content: "{{ config }}"
+    dest: "/etc/rancher/k3s/k3s.yaml"
+    mode: 0755
+  vars:
+    config: "{{ hostvars[groups['master'][0]]['kube_config']['content'] | b64decode }}"
+  when: "'kube_config' in hostvars[groups['master'][0]]"
+
+- name: download helm
+  get_url:
+    url: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
+    dest: /tmp/helm.tgz
+    checksum: "{{ helm_hash }}"
+
+- name: extract helm
+  unarchive:
+    src: "/tmp/helm.tgz"
+    dest: /usr/local/bin
+
+- name: move binaries
+  file:
+    src: "/usr/local/bin/linux-amd64/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items: ['helm', 'tiller']

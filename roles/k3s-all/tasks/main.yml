@@ -19,7 +19,18 @@
 - name: download k3s
   get_url:
     url: https://github.com/rancher/k3s/releases/download/{{ k3s_version }}/k3s
+    checksum: "{{ k3s_hash }}"
     dest: /usr/local/bin/k3s
-    owner: root
-    group: root
     mode: 755
+
+- name: Create kubectl symlink
+  file:
+    src: /usr/local/bin/k3s
+    dest: /usr/local/bin/kubectl
+    state: link
+
+- name: Create crictl symlink
+  file:
+    src: /usr/local/bin/k3s
+    dest: /usr/local/bin/crictl
+    state: link

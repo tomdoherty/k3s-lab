@@ -16,7 +16,16 @@ timezone Europe/London
 install
 part / --fstype="xfs" --grow --size=1
 part swap --recommended
-user --name=tom --groups=wheel --iscrypted --password=$6$gAm2GgBXX6gIVIjt$QLAaWIq2aXJPiQh2KzZ54K4G/xKgSTrPXWZJDQwXZR0nbquUBxW.UABp75kC0dD4ZmzjJm60/yX/ojs6rIWst1
+user --name=tom --groups=wheel --iscrypted --password=$6$gAm2GgBXX6gIVIjt$kwggIN3nqhzz4eqMD69xky7eJnEHoaauAzRpUJOiqftbAyOms9coBobbomZ9arJA0v/9XzHp5wh6Jo49NUldS1
 %packages
 @core
+%end
+%post
+yum update -y
+echo "tom        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers.d/tom
+install -o tom -g tom -m 0700 -d ~tom/.ssh
+umask 0077
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9FNpoDiJLd+if9noTjimmiCfTi0BUa3uQFnUOf5PVLx+gT0+61j7+EOvvqdVN8pUI/+eNMJPqDvrPsKqe63QJkDboltJaY9m39KAPAVw/L8myLDsxcXprmLOtK8MlHc1FvGwsUeiZAZaEdt/KfOd/zkU/qd5xpQVk9ERO/H+o3T5ReuEV63vlSnF8mXvh5gFzJVLiTgMgGhYizg24Z894nalGx+rvPz1XWVhEqlZsQsdyXQsnUdoboSyVw1tcN3y87Tws8k72ZRMd5Yc9zs+5XN3Yj4DOtJzac0wvcFAVIetHMz2BWUbT5Ei9BDAjGerI+nr47p5CDetyqy82Ctwz tom@Thomass-MacBook-Pro.local" >~tom/.ssh/authorized_keys
+chown tom:tom ~tom/.ssh/authorized_keys
+tuned-adm profile virtual-guest
 %end

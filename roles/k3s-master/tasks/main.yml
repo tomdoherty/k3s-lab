@@ -28,18 +28,16 @@
 
 
 - name: make node token available
-  set_fact: 
+  set_fact:
    token: "{{ node_token.content | b64decode | regex_replace('\n', '') }}"
 
 
-- name: Create kubectl symlink
-  file:
-    src: /usr/local/bin/k3s
-    dest: /usr/local/bin/kubectl
-    state: link
+- name: Read kube config
+  slurp:
+    src: /etc/rancher/k3s/k3s.yaml
+  register: kube_config
 
-- name: Create crictl symlink
-  file:
-    src: /usr/local/bin/k3s
-    dest: /usr/local/bin/crictl
-    state: link
+
+- name: make config available
+  set_fact:
+   kube_config: "{{ kube_config }}"
