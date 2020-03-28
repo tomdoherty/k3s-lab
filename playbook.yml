@@ -18,3 +18,10 @@
   - include_role:
       name: k3s-nodes
   become: yes
+
+
+- hosts: control
+  tasks:
+  - include_role:
+      name: k3s-control
+  become: yes

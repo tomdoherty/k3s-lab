@@ -1,5 +1,8 @@
 ---
 # vars file for k3s-all
 
-k3s_version: v0.9.1
-master_ip: 192.168.33.10
+k3s_version: v1.17.4%2Bk3s1
+k3s_hash: sha256:60f36c6aa9d0d2c6b80e0673e0fdf53fb73441c0f6b82a9d0a58eed132beca32
+helm_version: v2.16.5
+helm_hash: sha256:7cd54f56f787d62fd7311d5ae2c26e31310d37d27e3622014e5c769bec008cab
+master_ip: 192.168.0.20

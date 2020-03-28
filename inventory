@@ -1,3 +1,6 @@
+[control]
+localhost ansible_host=127.0.0.1
+
 [master]
 k3s-master01 ansible_host=192.168.0.20
 
@@ -7,6 +10,7 @@ k3s-node02 ansible_host=192.168.0.22
 k3s-node03 ansible_host=192.168.0.23
 
 [all:children]
+control
 master
 nodes
 
