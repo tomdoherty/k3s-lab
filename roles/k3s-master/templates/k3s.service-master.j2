@@ -7,6 +7,7 @@ After=network-online.target
 Type=notify
 ExecStartPre=-/sbin/modprobe br_netfilter
 ExecStartPre=-/sbin/modprobe overlay
+ExecStartPre=-/sbin/modprobe nf_conntrack
 ExecStart=/usr/local/bin/k3s server --bind-address {{ master_ip }} --advertise-address {{ master_ip }}
 KillMode=process
 Delegate=yes
