@@ -1,4 +1,69 @@
 ---
+
+- name: add hosts entries
+  copy:
+    dest: /etc/hosts
+    content: |
+      127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+      192.168.0.15 server
+      192.168.0.20 k3s-master01
+      192.168.0.21 k3s-node01
+      192.168.0.22 k3s-node02
+      192.168.0.23 k3s-node03
+
+- name: add crt
+  copy:
+    dest: /etc/pki/ca-trust/source/anchors/server.crt
+    content: |
+      -----BEGIN CERTIFICATE-----
+      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
+      dUclYo1qhAMS5NplxiOkX0cPSw==
+      -----END CERTIFICATE-----
+
+- name: run update-ca-trust
+  command: update-ca-trust
+
+
+- name: Disable selinux
+  selinux:
+    state: disabled
+
+- name: Disable firewalld
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
 - name: ipv6 sysctl
   sysctl: name={{ item }} value=1 state=present
   with_items:
@@ -6,9 +71,24 @@
     - net.ipv6.conf.default.disable_ipv6
     - net.ipv6.conf.lo.disable_ipv6
 
-
 - name: ipv6 blacklist
   lineinfile: "dest=/etc/modprobe.conf line='install ipv6 /bin/true' create=yes"
+
+- name: Load br_netfilter
+  copy:
+    dest: /etc/modules-load.d/br_netfilter.conf
+    content: |
+      br_netfilter
+
+- name: Add br_netfilter
+  modprobe:
+    name: br_netfilter
+
+- name: sysctl
+  sysctl: name={{ item }} value=1 state=present
+  with_items:
+    - net.bridge.bridge-nf-call-iptables
+    - net.bridge.bridge-nf-call-arptables
 
 
 - name: Delete k3s if already present
