@@ -5,7 +5,7 @@ text
 firewall --disable
 firstboot --disable
 keyboard gb
-network --device eth0 --bootproto static --ip 192.168.0.21 --netmask 255.255.255.0 --gateway 192.168.0.1 --nameserver 8.8.8.8 --noipv6 --hostname k3-node01
+network --device eth0 --bootproto static --ip 192.168.0.21 --netmask 255.255.255.0 --gateway 192.168.0.1 --nameserver 8.8.8.8 --noipv6 --hostname k3s-node01
 lang en_GB
 logging --level=info
 url --url=http://mirror.mhd.uk.as44574.net/mirror.centos.org/7.7.1908/os/x86_64/
@@ -15,7 +15,6 @@ skipx
 timezone Europe/London
 install
 part / --fstype="xfs" --grow --size=1
-part swap --recommended
 user --name=tom --groups=wheel --iscrypted --password=$6$gAm2GgBXX6gIVIjt$kwggIN3nqhzz4eqMD69xky7eJnEHoaauAzRpUJOiqftbAyOms9coBobbomZ9arJA0v/9XzHp5wh6Jo49NUldS1
 %packages
 @core

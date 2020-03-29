@@ -1,5 +1,59 @@
 ---
 
+- name: install some dependencies
+  package:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+
+- name: Enable Docker Edge/test repo
+  ini_file:
+    dest: /etc/yum.repos.d/docer-ce.repo
+    section: "{{ item }}"
+    option: enabled
+    value: 0
+  with_items:
+    - docker-ce-edge
+    - docker-ce-test
+
+- name: Install Docker
+  package:
+    name: docker-ce
+    state: latest
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user tom to docker group
+  user:
+    name: tom
+    groups: docker
+    append: yes
+  become: yes
+
+- name: sysctl
+  sysctl: name={{ item }} value=1 state=present
+  with_items:
+    - net.ipv4.ip_forward
+
+- name: install docker config
+  copy:
+    content: |
+      {
+        "insecure-registries" : ["server:5000"]
+      }
+    dest: /etc/docker/daemon.json
+    mode: 0755
+
 - name: create kube config dir
   file:
     path: "/etc/rancher/k3s"
@@ -31,3 +85,13 @@
     dest: "/usr/local/bin/{{ item }}"
     state: link
   with_items: ['helm', 'tiller']
+
+- name: setup tiller
+  command: "{{ item }}"
+  with_items:
+    - /usr/local/bin/kubectl -n kube-system create serviceaccount tiller
+    - /usr/local/bin/kubectl create clusterrolebinding tiller --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+
+- name: output helm command
+  debug:
+    msg: /usr/local/bin/helm init --service-account tiller

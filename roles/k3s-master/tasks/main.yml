@@ -1,5 +1,14 @@
 ---
 
+- name: Disable swap
+  shell: /usr/sbin/swapoff -a
+
+- name: Disable swap fstab
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+
 - name: install k3s service file
   template:
     src: "k3s.service-master.j2"
