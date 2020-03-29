@@ -1,5 +1,27 @@
 ---
 
+- name: Start nfs-server
+  service:
+    name: nfs-server
+    state: started
+    enabled: yes
+
+- name: create kube config dir
+  file:
+    path: /nfs/k3s
+    state: directory
+    mode: 0777
+
+- name: install exports
+  copy:
+    content: |
+      /nfs/k3s               192.168.0.0/24(rw)
+    dest: /etc/exports
+    mode: 0755
+
+- name: run exportfs
+  command: exportfs -ra
+
 - name: install some dependencies
   package:
     name:
