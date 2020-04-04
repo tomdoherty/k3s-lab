@@ -11,6 +11,10 @@
       192.168.0.22 k3s-node02
       192.168.0.23 k3s-node03
 
+- name: add nfs-utils
+  package:
+    name: nfs-utils
+
 - name: add crt
   copy:
     dest: /etc/pki/ca-trust/source/anchors/server.crt
