@@ -3,6 +3,6 @@
 
 k3s_version: v1.17.4%2Bk3s1
 k3s_hash: sha256:60f36c6aa9d0d2c6b80e0673e0fdf53fb73441c0f6b82a9d0a58eed132beca32
-helm_version: v2.16.5
-helm_hash: sha256:7cd54f56f787d62fd7311d5ae2c26e31310d37d27e3622014e5c769bec008cab
+helm_version: v3.1.2
+helm_hash: sha256:e6be589df85076108c33e12e60cfb85dcd82c5d756a6f6ebc8de0ee505c9fd4c
 master_ip: 192.168.0.20
