@@ -1,5 +1,9 @@
 ---
 
+- name: iscsiadm
+  package:
+    name: iscsi-initiator-utils
+
 - name: add hosts entries
   copy:
     dest: /etc/hosts
